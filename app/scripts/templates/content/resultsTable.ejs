@@ -1,0 +1,18 @@
+<table class="table table-striped table-bordered recipeTable">
+  <thead>
+    <tr>
+        <th>Title</th>
+        <th>Score</th>
+        <th>Reviews</th>
+    </tr>
+    <% _.each(rows, function (row) { %>
+    	<tr>
+    		<td><a href="<%= row.link %>"><%= row.title %></a></td>
+    		<td><%= row.score %></td>
+    		<td><%= row.reviews %></td>
+    	</tr>
+    <% }); %>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
