@@ -2,8 +2,9 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'templates'
-], function ($, _, Backbone, JST) {
+  'templates',
+  '../../helpers/api'
+], function ($, _, Backbone, JST, API) {
   'use strict';
 
   var SearchBarView = Backbone.View.extend({
@@ -21,9 +22,14 @@ define([
       this.$el.html(this.template());
     },
 
-    search: function () {
+    search: function (evt) {
+      evt.preventDefault();
       var query = $('.searchInput').val();
-      Backbone.trigger('search', query);
+      Backbone.trigger('searchBegin', query);
+      var request = API.search(query);
+      request.done(function (data) {
+        Backbone.trigger('searchResults', data);
+      });
     }
 
   });
